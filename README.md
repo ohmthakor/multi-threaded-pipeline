@@ -62,40 +62,41 @@ Output Example
 ```bash
 Hello^ World! This is a test^
 ```
-Implementation Details
+## Implementation Details
 
-Pipeline Threads:
-Input Thread:
-Reads input from stdin.
-Passes lines to Buffer 1.
-Line Separator Thread:
-Consumes lines from Buffer 1.
-Replaces newline characters with spaces.
-Produces lines for Buffer 2.
-Plus Sign Thread:
-Consumes lines from Buffer 2.
-Replaces "++" with ^.
-Produces lines for Buffer 3.
-Output Thread:
-Consumes lines from Buffer 3.
-Outputs lines of exactly 80 characters to stdout.
-Synchronization:
-Each pair of threads communicates through a shared buffer.
-Buffers use condition variables to handle full/empty states.
-Unbounded Buffers:
-Each buffer can store up to 50 lines of 1000 characters.
-Technologies Used
+### Pipeline Threads:
+#### Input Thread:
+- Reads input from stdin.
+- Passes lines to Buffer 1.
+#### Line Separator Thread:
+- Consumes lines from Buffer 1.
+- Replaces newline characters with spaces.
+- Produces lines for Buffer 2.
+#### Plus Sign Thread:
+- Consumes lines from Buffer 2.
+- Replaces "++" with ^.
+- Produces lines for Buffer 3.
+#### Output Thread:
+- Consumes lines from Buffer 3.
+- Outputs lines of exactly 80 characters to stdout.
+#### Synchronization:
+- Each pair of threads communicates through a shared buffer.
+- Buffers use condition variables to handle full/empty states.
+#### Unbounded Buffers:
+- Each buffer can store up to 50 lines of 1000 characters.
 
-C Programming Language: For thread creation and data processing.
-POSIX Threads (pthread): To implement multi-threading.
-Condition Variables: For thread synchronization.
-Mutual Exclusion: Using mutexes to protect shared resources.
-Unix System Calls: For I/O operations and thread management.
-Learning Outcomes
+## Technologies Used
 
-This project demonstrates:
+C Programming Language: For thread creation and data processing.  
+POSIX Threads (pthread): To implement multi-threading.  
+Condition Variables: For thread synchronization.  
+Mutual Exclusion: Using mutexes to protect shared resources.  
+Unix System Calls: For I/O operations and thread management.  
 
-Practical implementation of the producer-consumer model.
-Synchronization of threads using condition variables and mutexes.
-Handling concurrent access to shared resources in a multi-threaded environment.
-Efficient processing of input-output data streams.
+
+### This project demonstrates:
+
+- Practical implementation of the producer-consumer model.
+- Synchronization of threads using condition variables and mutexes.
+- Handling concurrent access to shared resources in a multi-threaded environment.
+- Efficient processing of input-output data streams.
